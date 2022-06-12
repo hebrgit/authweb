@@ -5,7 +5,7 @@ export default {
       datafrom: {
         uname: "",
         pass: "",
-      },
+      }, 
     };
   },
   methods: {
@@ -37,6 +37,7 @@ export default {
       </div>
 
     </div>
+    <router-view></router-view>
   </div>
 </template>
 <style scoped>
