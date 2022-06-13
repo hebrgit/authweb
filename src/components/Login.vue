@@ -1,4 +1,7 @@
+
 <script>
+import request from '../request/request'
+import axois from 'axios'
 export default {
   data() {
     return {
@@ -10,7 +13,18 @@ export default {
   },
   methods: {
     submitData() {
-        this.$router.replace("/hello")
+
+      axois.get('/path/sys/loginT').then(res=>{
+        console.log(res)
+      })
+        // request({
+        //   method:'GET',
+        //   url:'/path/sys/loginT'
+        // }).then({
+
+        // })
+        // this.$router.replace("/hello")
+
     },
   },
 };
