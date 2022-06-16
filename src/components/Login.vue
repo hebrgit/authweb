@@ -1,8 +1,7 @@
 
 <script>
-import request from '../request/request'
-import axois from 'axios'
 export default {
+
   data() {
     return {
       datafrom: {
@@ -14,16 +13,14 @@ export default {
   methods: {
     submitData() {
 
-      axois.get('/path/sys/loginT').then(res=>{
-        console.log(res)
-      })
-        // request({
-        //   method:'GET',
-        //   url:'/path/sys/loginT'
-        // }).then({
+      console.log("111",this.$http.api.Login())
 
-        // })
-        // this.$router.replace("/hello")
+        this.$http.api.Login().then((res)=>{
+            if(res.data.code == 0){
+              this.$router.push("/hello")
+            }
+        })
+        
 
     },
   },
