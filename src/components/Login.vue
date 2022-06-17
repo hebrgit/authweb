@@ -1,9 +1,12 @@
 
 <script>
-export default {
+import msg from '../utils/message'
 
+
+export default {
   data() {
     return {
+      isActive:false,
       datafrom: {
         uname: "",
         pass: "",
@@ -13,11 +16,11 @@ export default {
   methods: {
     submitData() {
 
-      console.log("111",this.$http.api.Login())
 
         this.$http.api.Login().then((res)=>{
             if(res.data.code == 0){
-              this.$router.push("/hello")
+              let message = new msg();
+              message.warning(res.data.message)
             }
         })
         
@@ -25,6 +28,7 @@ export default {
     },
   },
 };
+
 </script>
 <template>
   <div class="login" >
@@ -46,7 +50,6 @@ export default {
       <div class="login-submit">
         <input type="submit" @click="submitData()" />
       </div>
-
     </div>
     <router-view></router-view>
   </div>
@@ -55,7 +58,7 @@ export default {
 .login {
   width: 100%;
   height: 100%;
-  background-image: url(./img/login.jpg);
+  background-image: url(../assets/images/login.jpg);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,4 +109,6 @@ export default {
   padding-left: 10px;
   font-size: 15px;
 }
+
+
 </style>

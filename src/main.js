@@ -1,4 +1,6 @@
 import { createApp } from 'vue'
+import './assets/fonts/iconfont.css'
+import './assets/css/message.css'
 
 import App from './App.vue'
 import router from './router'

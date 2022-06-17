@@ -1,9 +1,12 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+/************************************* 路径配置 start ********************************/
+import { resolve } from 'path' 
 
-// https://vitejs.dev/config/
+
 export default defineConfig({
   plugins: [vue()],
+  
   server: {
     proxy: {
       '/path': {
@@ -12,5 +15,10 @@ export default defineConfig({
         rewrite: path => path.replace(/^\/path/, '')
       }
     }
-  }
+  },
+  
+
+  // resolve: {  // ****************** 路径配置新增
+  //   '@': path.resolve(__dirname, 'src') // ****************** 路径配置新增
+  // }  
 })

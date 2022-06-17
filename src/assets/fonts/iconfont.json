@@ -1,0 +1,37 @@
+{
+  "id": "3471011",
+  "name": "authWeb",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "28679981",
+      "name": "错误-1",
+      "font_class": "cuowu-1",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "29808515",
+      "name": "正确-面性",
+      "font_class": "zhengque-mianxing",
+      "unicode": "e8fd",
+      "unicode_decimal": 59645
+    },
+    {
+      "icon_id": "29808543",
+      "name": "清除-面性",
+      "font_class": "qingchu-mianxing",
+      "unicode": "e90a",
+      "unicode_decimal": 59658
+    },
+    {
+      "icon_id": "29808514",
+      "name": "注意-面性",
+      "font_class": "zhuyi-mianxing",
+      "unicode": "e8fc",
+      "unicode_decimal": 59644
+    }
+  ]
+}
