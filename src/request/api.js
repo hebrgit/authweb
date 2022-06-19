@@ -1,9 +1,9 @@
 import request from "./request";
-
-export  function Login(){
-  return  request({
-        method: 'GET',
-        url:'path/sys/login',
-        // data,
-    })
+import qs from 'qs'
+export function Login(param) {
+  return request({
+    method: 'POST',
+    url: '/path/user/login',
+    data: param
+  })
 }

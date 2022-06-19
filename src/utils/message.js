@@ -1,5 +1,5 @@
 class message{
-   static  i = 0;
+
     constructor(){
         const containerId = 'message-container'
         this.containerEl =  document.getElementById(containerId);
@@ -61,13 +61,13 @@ class message{
          });
      };
 
-     success({text,duration = 5000}){
+    success({ text, duration = 2000 }) {
         this.show({type:'success',text,duration})
      };
-     error(text,duration = 5000){
+    error(text, duration = 2000) {
         this.show({type:'error',text,duration})
      };
-     warning(text,duration = 5000){
+    warning(text, duration = 2000) {
         this.show({type:'warning',text,duration})
      }
 

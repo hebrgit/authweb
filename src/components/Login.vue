@@ -1,4 +1,27 @@
-
+<template>
+  <div class="login" >
+    <div class="login-con">
+      <div class="login-input">
+        <input
+          type="text"
+          v-model="datafrom.username"
+          placeholder="请输入账号"
+          lable="账号"
+        />
+        <input
+          type="password"
+          v-model="datafrom.password"
+          placeholder="请输入密码"
+          lable="密码"
+        />
+      </div>
+      <div class="login-submit">
+        <input type="submit" @click="submitData()" />
+      </div>
+    </div>
+    <router-view></router-view>
+  </div>
+</template>
 <script>
 import msg from '../utils/message'
 
@@ -8,16 +31,15 @@ export default {
     return {
       isActive:false,
       datafrom: {
-        uname: "",
-        pass: "",
+        username: "",
+        password: "",
       }, 
     };
   },
   methods: {
+
     submitData() {
-
-
-        this.$http.api.Login().then((res)=>{
+        this.$http.api.Login(this.datafrom).then((res)=>{
             if(res.data.code == 0){
               let message = new msg();
               message.warning(res.data.message)
@@ -30,30 +52,7 @@ export default {
 };
 
 </script>
-<template>
-  <div class="login" >
-    <div class="login-con">
-      <div class="login-input">
-        <input
-          type="text"
-          v-model="datafrom.uname"
-          placeholder="请输入账号"
-          lable="账号"
-        />
-        <input
-          type="password"
-          v-model="datafrom.pass"
-          placeholder="请输入密码"
-          lable="密码"
-        />
-      </div>
-      <div class="login-submit">
-        <input type="submit" @click="submitData()" />
-      </div>
-    </div>
-    <router-view></router-view>
-  </div>
-</template>
+
 <style scoped>
 .login {
   width: 100%;
