@@ -3,7 +3,7 @@ import qs from 'qs'
 export function Login(param) {
   return request({
     method: 'POST',
-    url: '/path/user/login',
-    data: param
+    url: '/path/login?'+qs.stringify(param),
+    // data: param
   })
 }

@@ -40,6 +40,7 @@ export default {
 
     submitData() {
         this.$http.api.Login(this.datafrom).then((res)=>{
+          console.log("rest",res)
             if(res.data.code == 0){
               let message = new msg();
               message.warning(res.data.message)
