@@ -24,7 +24,7 @@
 </template>
 <script>
 import msg from '../utils/message'
-
+import qs from 'qs'
 
 export default {
   data() {
@@ -42,6 +42,9 @@ export default {
         this.$http.api.Login(this.datafrom).then((res)=>{
           console.log("rest",res)
             if(res.data.code == 0){
+              localStorage.setItem("token",qs.stringify(res.data.data))
+                this.$router.push("index")
+            }else{
               let message = new msg();
               message.warning(res.data.message)
             }

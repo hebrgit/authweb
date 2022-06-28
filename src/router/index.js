@@ -1,6 +1,7 @@
 import Login from '../components/Login.vue'
 import HelloWord from '../components/HelloWorld.vue'
 // import Message from '../components/utils/Message.vue'
+import Index from '../components/Index.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
@@ -15,6 +16,7 @@ const routes = [
     },
     { path: '/login', component: Login },
     { path: '/hello', component: HelloWord },
+    { path: '/index', component: Index },
 
 ]
 
