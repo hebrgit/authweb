@@ -42,7 +42,7 @@ export default {
         this.$http.api.Login(this.datafrom).then((res)=>{
           console.log("rest",res)
             if(res.data.code == 0){
-              localStorage.setItem("token",qs.stringify(res.data.data))
+              localStorage.setItem("token",res.data.data.token)
                 this.$router.push("index")
             }else{
               let message = new msg();

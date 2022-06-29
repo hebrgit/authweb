@@ -13,8 +13,7 @@
                         </span>
                         <template #dropdown>
                             <el-dropdown-menu>
-                                <el-dropdown-item
-                                @click="logout">退出系统</el-dropdown-item>
+                                <el-dropdown-item @click="logout">退出系统</el-dropdown-item>
                             </el-dropdown-menu>
                         </template>
                     </el-dropdown>
@@ -25,7 +24,7 @@
                     <el-row class="tac">
                         <el-col>
                             <el-menu active-text-color="#ffd04b" class="el-menu-vertical-demo" default-active="2"
-                                text-color="#fff" background-color="#545c64" @open="handleOpen" @close="handleClose">
+                                text-color="#fff" background-color="#79bbff" @open="handleOpen" @close="handleClose">
                                 <el-sub-menu index="1">
                                     <template #title>
                                         <el-icon>
@@ -45,6 +44,13 @@
                                         <el-menu-item index="1-4-1">item one</el-menu-item>
                                     </el-sub-menu>
                                 </el-sub-menu>
+                                <el-sub-menu> 
+                                    <template #title>
+                                        <el-icon>
+                                            <location />
+                                        </el-icon>
+                                        <span>111</span>
+                                    </template> </el-sub-menu>
                             </el-menu>
                         </el-col>
                     </el-row>
@@ -64,9 +70,9 @@ export default {
             console.log("dropdown.value", this.$refs.dropdown)
             this.$refs.dropdown.handleOpen()
         },
-        logout: function(){
-            this.$http.api.Logout().then(res=>{
-                if(res.data.code == 0){
+        logout: function () {
+            this.$http.api.Logout().then(res => {
+                if (res.data.code == 0) {
                     localStorage.removeItem("token")
                     this.$router.push("login")
                 }
@@ -86,18 +92,28 @@ export default {
 }
 
 .el-aside {
-    background-color: #545c64;
+    background-color: #79bbff;
 }
 
 .el-header {
-    background-color: #545c64;
-    height: 80px;
+    background-color: #79bbff;
+    height: 60px;
+    box-shadow: 0 0 5px;
+
+}
+
+.el-sub-menu__title {
+    background-color: #79bbff;
+}
+
+.el-sub-menu:hover {
+    box-shadow: 0 0 5px;
 }
 
 .header-portrait {
     display: flex;
     justify-content: flex-end;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .header-portrait .el-avatar:hover {

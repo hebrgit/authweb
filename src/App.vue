@@ -17,7 +17,7 @@
   box-sizing: border-box;
 }
 body{
-  height: 1200px;
+  height: 100vh;
 }
 #app {
   height: 100%;

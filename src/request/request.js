@@ -4,7 +4,7 @@ import axios from 'axios'
 axios.defaults.baseurl = 'http://localhost:3000'
  
 // headers
-const request = axios.create({
+const _axios = axios.create({
     baseURL: axios.defaults.baseurl,
     timeout: 60000
 
@@ -12,16 +12,16 @@ const request = axios.create({
 
 let whiteList = [
 
-    '/login'
+    '/path/login'
 
 ]
 
-axios.interceptors.request.use(config => {
+_axios.interceptors.request.use(config => {
     // 是否需要设置 token
     console.log()
-    const isToken = whiteList.indexOf(config.url) == -1 ? true : false;
+    const isToken = whiteList.indexOf(config.url.split("?")[0]) == -1 ? true : false;
 
-    if (localStorage.get("token") && isToken) {
+    if (localStorage.getItem("token") && isToken) {
 
     config.headers['token'] = localStorage.getItem("token"); // 让每个请求携带自定义token 请        根据实际情况自行修改
 
@@ -37,14 +37,14 @@ axios.interceptors.request.use(config => {
 
 // response interceptor
 
-axios.interceptors.response.use((response) => {
+// _axios.interceptors.response.use((response) => {
 
-    return response.data;
+//     return response.data;
 
-}, error => {
+// }, error => {
 
-   return Promise.reject(error)
+//    return Promise.reject(error)
 
-})
+// })
 
-export default request
+export default _axios
