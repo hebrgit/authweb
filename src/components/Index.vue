@@ -1,6 +1,6 @@
 <template>
     <div class="common-layout">
-        <el-container>
+        <el-container >
             <el-header>
                 <div class="header-portrait">
 
@@ -23,34 +23,27 @@
                 <el-aside width="200px">
                     <el-row class="tac">
                         <el-col>
-                            <el-menu active-text-color="#ffd04b" class="el-menu-vertical-demo" default-active="2"
+                            <el-menu active-text-color="#ffd04b" class="el-menu-vertical-demo"
                                 text-color="#fff" background-color="#79bbff" @open="handleOpen" @close="handleClose">
-                                <el-sub-menu index="1">
-                                    <template #title>
-                                        <el-icon>
-                                            <location />
-                                        </el-icon>
-                                        <span>系统管理</span>
-                                    </template>
-                                    <el-menu-item-group title="Group One">
-                                        <el-menu-item index="1-1">item one</el-menu-item>
-                                        <el-menu-item index="1-2">item one</el-menu-item>
-                                    </el-menu-item-group>
-                                    <el-menu-item-group title="Group Two">
-                                        <el-menu-item index="1-3">item three</el-menu-item>
-                                    </el-menu-item-group>
-                                    <el-sub-menu index="1-4">
-                                        <template #title>item four</template>
-                                        <el-menu-item index="1-4-1">item one</el-menu-item>
+                                <div v-for="(item, index) in menuData" :key="index">
+                                    <el-sub-menu :index="item.menuId" v-if="item.type == 0 && item.parentId == 0" :key="item.menuId">
+                                        <template #title>
+                                            <el-icon>
+                                                <component :is="item.icon"/>
+                                            </el-icon>
+                                            <span>{{ item.name }}</span>
+                                        </template>
+                                        <el-menu-item :index="menu.menuId" v-for="(menu) in item.sysMenus" :key="menu.menuId">
+                                             <span>{{ menu.name }}
+                                        </span></el-menu-item>
+                                        <!-- <el-sub-menu index="1-4">
+                                            <template #title>item four</template>
+                                            <el-menu-item index="1-4-1">item one</el-menu-item>
+                                        </el-sub-menu> -->
                                     </el-sub-menu>
-                                </el-sub-menu>
-                                <el-sub-menu> 
-                                    <template #title>
-                                        <el-icon>
-                                            <location />
-                                        </el-icon>
-                                        <span>111</span>
-                                    </template> </el-sub-menu>
+                                </div>
+
+
                             </el-menu>
                         </el-col>
                     </el-row>
@@ -63,7 +56,29 @@
 
 <script>
 
+
 export default {
+
+    data() {
+        return {
+            menuData: {
+                "menuId": 0,
+                "parentId": 0,
+                "name": '',
+                "url": '',
+                "perms": '',
+                "type": 0,
+                "icon": '',
+                "orderNum": '',
+                "deleteFlag": 0,
+                sysMenus:{}
+            }
+        }
+    },
+
+    created() {
+        this.listMenu();
+    },
 
     methods: {
         avatarClick: function () {
@@ -77,7 +92,17 @@ export default {
                     this.$router.push("login")
                 }
             })
-        }
+        },
+
+        listMenu: function () {
+            this.$http.api.listMenu().then(res => {
+                if (res.data.code == 0) {
+                    this.menuData = res.data.data
+                    console.log("menuData", this.menuData)
+                }
+            })
+        },
+
     }
 }
 </script>
@@ -104,10 +129,6 @@ export default {
 
 .el-sub-menu__title {
     background-color: #79bbff;
-}
-
-.el-sub-menu:hover {
-    box-shadow: 0 0 5px;
 }
 
 .header-portrait {

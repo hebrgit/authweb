@@ -16,3 +16,5 @@ export function Logout() {
     // data: param
   })
 }
+
+export function listMenu(){return request({method:'GET',url:'/path/sysMenu/listMenu'})}
